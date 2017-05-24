@@ -1,0 +1,20 @@
+{
+  "name": "run_compare_project",
+  "version": "1.0.0",
+  "description": "* Use the Strava API to store basic information about runs in the database * Enable users to add a run to the database. * The user then sees similar runs that took place that day. * Users should be able to login.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JZoshak2/Run_Compare_Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JZoshak2/Run_Compare_Project/issues"
+  },
+  "homepage": "https://github.com/JZoshak2/Run_Compare_Project#readme"
+}

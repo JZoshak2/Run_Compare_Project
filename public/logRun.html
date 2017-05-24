@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Log Run</title>
-	<meta name="keywords" content="running, jogging, 5k, half-marathon, marathon">
-	<meta name="description" content="Register to compare your running times with joggers in your area.">
-	<!-- Latest compiled and minified CSS & JS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css" media="screen" title="no title">
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="handlebars-v4.0.2.js"></script>
+  <meta charset="utf-8">
+  <title>Log Run</title>
+  <meta name="keywords" content="running, jogging, 5k, half-marathon, marathon">
+  <meta name="description" content="Register to compare your running times with joggers in your area.">
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css" media="screen" title="no title">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="handlebars-v4.0.2.js"></script>
+  <script src="dist/sweetalert.min.js"></script><link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Running Mate</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Rankings</a></li>
-        <!-- <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li> -->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
-      </ul>
-    </div>
-  </div>
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Running Mate</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Rankings</a></li>
+<!-- <li><a href="#">About</a></li>
+<li><a href="#">Projects</a></li>
+<li><a href="#">Contact</a></li> -->
+</ul>
+<ul class="nav navbar-nav navbar-right">
+  <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+</ul>
+</div>
+</div>
 </nav>
-  
+
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -47,13 +48,13 @@
       <p><a href="#"></a></p>
     </div>
 
-<!-- BODY - Log Run -->
+    <!-- BODY - Log Run -->
     <div class="col-sm-8 text-center runMate"> 
       <h1>Running Mate</h1>
       <h3>Tagline goes here</h3>
-      
+
       <hr>
-<!-- PANEL -->
+      <!-- PANEL -->
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Log results of your recent run!</h3>
@@ -61,31 +62,67 @@
         <div class="panel-body">
           <!-- Panel content -->
           <form>
-            <select class="form-control">
-              <label for="selectDistance">Select Distance</label>
-              <option>5K</option>
-              <option>10K</option>
-              <option>1/2 Marathon</option>
-              <option>Marathon</option>
-            </select>
-
+            <div class="form-group">
+            <label for="selectDistance">Enter Distance</label>
+            <input type="number" class="form-control" id="numb" placeholder="Distance(miles)">
+            <p id="demo"></p>
+            </div>
             <div class="form-group">
               <label for="inputTime">Time</label>
-              <input type="email" class="form-control" id="inputTime" placeholder="Time (hh:mm:ss)">
+              <input type="time" class="form-control" id="inputTime" placeholder="Time (hh:mm:ss)">
             </div>
             <div class="form-group">
               <label for="inputCity">City</label>
-              <input type="password" class="form-control" id="inputCity" placeholder="City">
+              <input type="location" class="form-control" id="inputCity" placeholder="City">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button onsubmit="return myFunction()" method="POST  type="submit" class="btn btn-default">Submit</button>
           </form>
           <!-- ^^^ Panel content ^^^ -->
         </div>
       </div>
-    
+
     </div>
   </div>
-</div>  
+</div> 
+
+<script>
+function myFunction() {
+    var x, text;
+
+    // Get the value of the input field with id="numb"
+    x = document.getElementById("numb").value;
+
+    // If x is Not a Number or less than one or greater than 50
+    if (isNaN(x) || x < 1 || x > 50) {
+      sweetAlert("Oops...", "Something went wrong!", "error");
+    } else {
+        text = "Input OK";
+    }
+    document.getElementById("demo").innerHTML = text;
+}
+
+
+swal({
+        title: "Error!",
+        text: "Here's my error message!",
+        type: "error",
+        confirmButtonText: "Cool"
+      });
+
+var runDataEntries{
+  id:
+  runId:
+  time:
+  distance:
+  pace:
+  runDetails:
+}
+
+
+function pace(time, distance){
+  return (60 % time) * distance;
+}
+</script> 
 
 <br>
 <hr>
