@@ -1,7 +1,7 @@
 {
   "name": "run_compare_project",
   "version": "1.0.0",
-  "description": "* Use the Strava API to store basic information about runs in the database * Enable users to add a run to the database. * The user then sees similar runs that took place that day. * Users should be able to login.",
+  "description": "packages for run compare",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,10 +11,24 @@
     "type": "git",
     "url": "git+https://github.com/JZoshak2/Run_Compare_Project.git"
   },
-  "author": "",
+  "keywords": [
+    "running",
+    "friends",
+    "social"
+  ],
+  "author": "John Zoshak Chris Stucky Vince Knight",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JZoshak2/Run_Compare_Project/issues"
   },
-  "homepage": "https://github.com/JZoshak2/Run_Compare_Project#readme"
+  "homepage": "https://github.com/JZoshak2/Run_Compare_Project#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "sequelize": "^3.30.4"
+  }
 }
