@@ -1,37 +1,32 @@
 module.exports = function(sequelize, DataTypes) {
 var Runs = sequelize.define("Runs", {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER //this should probably be based on the ID of the user. ugh.
-        },
         distance: {
-            type: Sequelize.FLOAT,
+            type: DataTypes.FLOAT,
             notEmpty: true
         },
         time: {
-            type: Sequelize.TIME,
+            type: DataTypes.TIME,
             notEmpty: true
         },
         pace: {
-            type: Sequelize.TIME,
+            type: DataTypes.TIME,
             notEmpty: true
         },
-        note: {
-            type: Sequelize.STRING,
+        run_notes: {
+            type: DataTypes.STRING,
         }
       },
       {
         // We're saying that we want our Author to have Posts
         classMethods: {
-          associate: function(models) {
+          /*associate: function(models) {
             // An Author (foreignKey) is required or a Post can't be made
-            Runs.belongsTo(models.User, {
+            Runs.belongsTo(models.Users, {
               foreignKey: {
                 allowNull: false
               }
             });
-          }
+          }*/
         }
       }
 
