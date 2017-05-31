@@ -1,14 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
   var Run = sequelize.define("Run", {
     date: {
-      type: DataTypes.STRING,
+      type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     time: {
-      type: DataTypes.STRING,
+      type: DataTypes.TIME,
       allowNull: false,
       len: [1]
     },

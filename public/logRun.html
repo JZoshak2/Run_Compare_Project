@@ -61,25 +61,58 @@
         </div>
         <div class="panel-body">
           <!-- Panel content -->
-          <form>
+          <form action="/" method="POST">
             <div class="form-group">
             <label for="selectDistance">Enter Distance</label>
-            <input type="number" class="form-control" id="numb" placeholder="Distance(miles)">
+            <input type="number" step=".01" class="form-control" id="inputDistance" placeholder="Distance(miles)">
             <p id="demo"></p>
             </div>
             <div class="form-group">
               <label for="inputTime">Time</label>
-              <input type="time" class="form-control" id="inputTime" placeholder="Time (hh:mm:ss)">
+              <input type="number" step=".01" class="form-control" id="inputTime" placeholder="Time (mm.ss)">
             </div>
             <div class="form-group">
-              <label for="inputCity">City</label>
-              <input type="location" class="form-control" id="inputCity" placeholder="City">
+              <label for="inputNotes">Run Notes</label>
+              <input type="text" class="form-control" id="inputNotes" placeholder="Notes">
             </div>
-            <button onsubmit="return myFunction()" method="POST  type="submit" class="btn btn-default">Submit</button>
+            <button onsubmit="return myFunction()" method="POST"  type="submit" id="run-submit" class="btn btn-default">Submit</button>
           </form>
           <!-- ^^^ Panel content ^^^ -->
         </div>
       </div>
+        
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Saved Runs</h3>
+        </div>
+        <span>
+        <div class="panel-body" id="run-area">
+
+          <!-- Return HTML should populate here for Saved Runs to be Displayed -->
+          <table>
+            <thead>
+              <tr>
+                <th>Distance(Miles)</th>
+                <th>Time</th>
+                <th>Pace(MPH)</th>
+                <th>Run Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+               <tr id="newRow">
+                <td id="runDistance">10.25</td>
+                <td id="runTime">07:36</td>
+                <td id="runPace">5</td>
+                <td id="runNotes">zzzooooooooommmm!</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+        </span>
+      </div>
+
 
     </div>
   </div>

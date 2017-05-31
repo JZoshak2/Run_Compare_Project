@@ -1,7 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     // Giving the User ID model a type of INTEGER
-    name: DataTypes.STRING
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    email: DataTypes.STRING,
+    zip: DataTypes.INTEGER
+  };
   },
    {
             classMethods:{
