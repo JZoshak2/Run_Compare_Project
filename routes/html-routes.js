@@ -8,10 +8,16 @@ module.exports = function(app) {
 // });
 
 app.get("/login", function(req, res){
-  res.sendFile(path.join(__dirname, "../public/signIn.html"));
+  res.render("login");
 });
 
 app.get("/register", function(req, res){
-  res.sendFile(path.join(__dirname, "../public/register.html"));
+  res.render("register");
+});
+
+app.get("/rankings", function(req, res){
+  res.render("rankings", {
+  	runs: data
+  });
 });
 };

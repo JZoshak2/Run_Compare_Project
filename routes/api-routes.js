@@ -3,7 +3,7 @@
 
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports.apiRoutes = function(app) {
 
   // POST route for saving a new todo
   app.post("/api/runs", function(req, res) {
@@ -15,7 +15,7 @@ module.exports = function(app) {
       distance: req.body.distance,
       time: req.body.time,
       pace: req.body.pace, //need to write function to calc pace
-      note: req.body.note
+      run_notes: req.body.note
 
     }).then(function(dbTodo) {
       // We have access to the new todo as an argument inside of the callback function
@@ -23,9 +23,9 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/users", function(req, res){
-    db.Users.create({
+  // app.post("/api/runresults", function(req, res){
+  //   db.Users.create({
       
-    });
-  });
+  //   });
+  // });
 };
