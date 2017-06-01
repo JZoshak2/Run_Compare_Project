@@ -1,24 +1,19 @@
 module.exports = function(sequelize, DataTypes) {
 var Runs = sequelize.define("Runs", {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER //this should probably be based on the ID of the user. ugh.
-        },
         distance: {
-            type: Sequelize.FLOAT,
+            type: DataTypes.FLOAT,
             notEmpty: true
         },
         time: {
-            type: Sequelize.TIME,
+            type: DataTypes.TIME,
             notEmpty: true
         },
         pace: {
-            type: Sequelize.TIME,
+            type: DataTypes.TIME,
             notEmpty: true
         },
         note: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
         }
       },
       {

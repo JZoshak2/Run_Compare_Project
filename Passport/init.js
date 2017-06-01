@@ -1,6 +1,6 @@
 var login = require('./login');
 var signup = require('./signup');
-//var User = require('../models/user'); need to replace with Sequelize Code. 
+var User = require('../models/');
 
 module.exports = function(passport){
 
