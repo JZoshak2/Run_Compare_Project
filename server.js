@@ -12,6 +12,12 @@ app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//handlebars Setup
+var exphbs = require("express-handlebars");
+// Set handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+
 //Passport Configuration
 passport.use(new LocalStrategy(
   function(username, password, done) {
