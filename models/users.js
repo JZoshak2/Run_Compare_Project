@@ -3,26 +3,26 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     firstName: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       notEmpty: true
     },
     lastName: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       notEmpty: true
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       notEmpty: true
     },
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       notEmpty: true
     },
     zip: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       notEmpty: true
     }
   },

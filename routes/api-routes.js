@@ -22,10 +22,4 @@ module.exports = function(app) {
       res.json(dbTodo);
     });
   });
-
-  app.post("/api/users", function(req, res){
-    db.Users.create({
-      
-    });
-  });
 };
