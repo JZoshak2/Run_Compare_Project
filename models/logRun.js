@@ -21,7 +21,7 @@ var Runs = sequelize.define("Runs", {
         classMethods: {
           associate: function(models) {
             // An Author (foreignKey) is required or a Post can't be made
-            Runs.belongsTo(models.User, {
+            Runs.belongsTo(models.Users, {
               foreignKey: {
                 allowNull: false
               }

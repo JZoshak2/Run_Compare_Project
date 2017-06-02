@@ -4,13 +4,21 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var htmlRoutes = require("./routes/html-routes.js");
 
+//Server Setup
+var app = express();
+var PORT = 3000;
+
 //Passport Setup
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 var session = require("express-session");
-app.use(expressSession({secret: 'mySecretKey'}));
+app.use(session({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+//Connect Flash Setup
+var flash = require('connect-flash');
+app.use(flash());
 
 //handlebars Setup
 var exphbs = require("express-handlebars");
@@ -34,9 +42,6 @@ passport.use(new LocalStrategy(
   }
 ));
 
-//Server Setup
-var app = express();
-var PORT = 3000;
 
 //Body parser Stuff
 app.use(bodyParser.json());
@@ -45,15 +50,15 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
-//User Login
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
+// //User Login
+// app.post('/login',
+//   passport.authenticate('local', { successRedirect: '/',
+//                                    failureRedirect: '/login',
+//                                    failureFlash: true })
+// );
 
 //routes
-htmlRoutes(app);
+htmlRoutes(app, passport);
 
 //ServerListening
 app.listen(PORT, function(){
