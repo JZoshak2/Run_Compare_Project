@@ -20,6 +20,11 @@ module.exports = function(app, passport) {
 		res.render('home', { message: req.flash('message') });
 	});
 
+	app.get('/login', function(req, res) {
+    	// Display the Login page with any flash message, if any
+		res.render('login', { message: req.flash('message') });
+	});
+
 	/* Handle Login POST */
 	app.post('/login', passport.authenticate('login', {
 		successRedirect: '/logOrRank', //use whatever we're going with.

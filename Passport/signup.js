@@ -1,17 +1,19 @@
-var LocalStrategy   = require('passport-local').Strategy;
-var User = require('../models/');
+var LocalStrategy = require('passport-local').Strategy;
+var Users = require('../models/users.js');
 var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function(passport){
 
 	passport.use('signup', new LocalStrategy({
-            passReqToCallback : true // allows us to pass back the entire request to the callback
+						usernameField : 'email',
+						passwordField : 'password',
+						passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, email, password, done) {
 
             findOrCreateUser = function(){
                 // find a user in mySQL with provided email
-                User.findOne({ 'email' :  email }, function(err, user) {
+                Users.findOne({where: {'email' :  email} }, function(err, user) {
                     // In case of any error, return using the done method
                     if (err){
                         console.log('Error in SignUp: '+err);
@@ -28,9 +30,9 @@ module.exports = function(passport){
 
                         // set the user's local credentials
                         newUser.password = createHash(password);
-                        newUser.email = req.param('email');
-                        newUser.firstName = req.param('firstName');
-                        newUser.lastName = req.param('lastName');
+                        newUser.email = email;
+                        newUser.firstName = req.body.firstName;
+                        newUser.lastName = req.body.lastName;
 
                         // save the user
                         newUser.save(function(err) {
