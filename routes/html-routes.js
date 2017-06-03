@@ -26,8 +26,8 @@ module.exports = function(app, passport) {
 	});
 
 	/* Handle Login POST */
-	app.post('/login', passport.authenticate('login', {
-		successRedirect: '/logOrRank', //use whatever we're going with.
+	app.post('/login', passport.authenticate('local-signin', {
+		successRedirect: '/logRun', //use whatever we're going with.
 		failureRedirect: '/',
 		failureFlash : true
 	}));
@@ -38,15 +38,23 @@ module.exports = function(app, passport) {
 	});
 
 	/* Handle Registration POST */
-	app.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/home',
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect: '/logRun',
 		failureRedirect: '/signup',
 		failureFlash : true
 	}));
 
 	/* GET Home Page */
-	app.get('/logOrRun', isAuthenticated, function(req, res){
-		res.render('logOrRun', { user: req.user });
+	app.get('/logOrRank', isAuthenticated, function(req, res){
+		res.render('logOrRank', { user: req.user });
+	});
+
+	app.get('/logRun', isAuthenticated, function(req, res){
+		res.render('logRun', { user: req.user });
+	});
+
+	app.get('/rankings', isAuthenticated, function(req, res){
+		res.render('rankings', { user: req.user });
 	});
 
 	/* Handle Logout */

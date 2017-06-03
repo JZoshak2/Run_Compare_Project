@@ -3,6 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 var htmlRoutes = require("./routes/html-routes.js");
+var apiRoutes = require("./routes/api-routes.js");
 
 //Server Setup
 var app = express();
@@ -44,8 +45,8 @@ app.set("view engine", "handlebars");
 //   }
 // ));
 
-var initPassport = require('./passport/init');
-initPassport(passport);
+//var initPassport = require('./passport/init');
+//initPassport(passport);
 
 //Body parser Stuff
 app.use(bodyParser.json());
@@ -63,7 +64,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //routes
 htmlRoutes(app, passport);
-
+apiRoutes(app, passport);
+require('./config/passport.js')(passport, db.Users);
 //ServerListening
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {

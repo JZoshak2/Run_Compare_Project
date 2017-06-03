@@ -1,3 +1,4 @@
+
 module.exports = function(sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
     id: {
@@ -23,7 +24,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     zip: {
       type: DataTypes.INTEGER,
-      notEmpty: true
     }
   },
     {
