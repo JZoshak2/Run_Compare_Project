@@ -1,5 +1,6 @@
+
 module.exports = function(sequelize, DataTypes) {
-  var Users = sequelize.define("user", {
+  var Users = sequelize.define("Users", {
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -23,7 +24,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     zip: {
       type: DataTypes.INTEGER,
-      notEmpty: true
     }
   },
     {
