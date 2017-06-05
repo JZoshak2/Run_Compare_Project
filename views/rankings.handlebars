@@ -1,0 +1,42 @@
+<!-- BODY - Log Run -->
+    <div class="col-sm-8 text-center runMate"> 
+      <h1>Running Mate</h1>
+      <h3>Tagline goes here</h3>
+      
+      <hr>
+<!-- PANEL -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Rankings</h3>
+        </div>
+        <div class="panel-body">
+          <!-- Panel content -->
+          
+          <table class="table table-striped">
+          <!-- Return HTML should populate here for Saved Runs to be Displayed -->
+            <thead>
+              <tr>
+                <th>Distance (Miles)</th>
+                <th>Time</th>
+                <th>Pace</th>
+                <th>Run Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+            {{#each results}}
+               <tr id="newRow">
+                <td id="runDistance">{{distance}}</td>
+                <td id="runTime">{{time}}</td>
+                <td id="runPace">{{pace}}</td>
+                <td id="runNotes">{{run_notes}}</td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </table>
+          
+          <!-- ^^^ Panel content ^^^ -->
+        </div>
+      </div>
+    
+  </div>
+</div>

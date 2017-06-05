@@ -1,0 +1,48 @@
+<!-- BODY - Log Run -->
+    <div class="col-sm-8 text-center runMate"> 
+      <h1>Running Mate</h1>
+      <h3>Tagline goes here</h3>
+      
+      <hr>
+<!-- PANEL -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Log results of your recent run!</h3>
+        </div>
+        <div class="panel-body">
+          <!-- Panel content -->
+          <form action="/api/runs" method="POST">
+            <div class="form-group">
+              <label for="inputDistance">Distance (miles)</label>
+              <input type="text" name="distance" class="form-control" id="inputDistance" placeholder="Example 5.43">
+            </div>
+            
+            <div class="form-group">
+              <label for="inputTime">Time</label>
+              <input type="text" name="time" class="form-control" id="inputTime" placeholder="Time (hh:mm:ss)">
+            </div>
+
+            <div class="form-group">
+              <label for="inputPace">Pace</label>
+              <input type="text" name="pace" class="form-control" id="inputPace" placeholder="Example 7:14">
+            </div>
+
+            <div class="form-group">
+              <label for="inputZip">Zip Code</label>
+              <input type="number" name="zip" class="form-control" id="inputZip" placeholder="5-digit ex. 22205">
+            </div>
+
+            <div class="form-group">
+              <label for="inputNote">Notes</label>
+              <input type="text" name="run_notes" class="form-control" id="inputNotes" placeholder="Ran a great pace the first 1/3rd, slowed down for traffice remaining 2/3rds.">
+            </div>
+
+            <button type="submit" class="btn btn-default" href="/rankings">Submit</button>
+          </form>
+          <!-- ^^^ Panel content ^^^ -->
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>  
