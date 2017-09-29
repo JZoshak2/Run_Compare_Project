@@ -19,6 +19,7 @@ app.use(session({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //Connect Flash Setup
 var flash = require('connect-flash');
 app.use(flash());
@@ -48,14 +49,34 @@ app.set("view engine", "handlebars");
 //var initPassport = require('./passport/init');
 //initPassport(passport);
 
+// Serve static content for the app from the "public" directory in the application directory.
+// app.use('/', express.static(path.join(__dirname, 'public')));
+app.use(express.static(process.cwd() + "/public"))
+
 //Body parser Stuff
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+// Dependency
+var exphbs = require("express-handlebars");
+// Set handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+
+// Import routes and give server access to them.
+var db = require("./models");
+var routes = require("./controllers/home.js");
+var api = require("./routes/api-routes.js");
+
+// Routes
+app.use("/", routes);
+api.apiRoutes(app);
+
 
 // //User Login
+
 // app.post('/login',
 //   passport.authenticate('local', { successRedirect: '/',
 //                                    failureRedirect: '/login',
@@ -63,6 +84,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // );
 
 //routes
+
 htmlRoutes(app, passport);
 apiRoutes(app, passport);
 require('./config/passport.js')(passport, db.Users);
