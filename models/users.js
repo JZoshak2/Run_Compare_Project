@@ -1,5 +1,11 @@
+
 module.exports = function(sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     firstName: {
       type: DataTypes.STRING,
       notEmpty: true
@@ -18,7 +24,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     zip: {
       type: DataTypes.INTEGER,
-      notEmpty: true
     }
   },
     {

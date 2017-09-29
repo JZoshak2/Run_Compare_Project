@@ -2,16 +2,33 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var htmlRoutes = require("./routes/html-routes.js");
+var apiRoutes = require("./routes/api-routes.js");
+
+//Server Setup
+var app = express();
+var PORT = 3000;
+
 var db = require("./models");
-// var htmlRoutes = require("./routes/html-routes.js");
 
 //Passport Setup
-// var passport = require("passport");
-// var LocalStrategy = require('passport-local').Strategy;
-// var session = require("express-session");
-// app.use(expressSession({secret: 'mySecretKey'}));
-// app.use(passport.initialize());
-// app.use(passport.session());
+var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
+var session = require("express-session");
+app.use(session({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//Connect Flash Setup
+var flash = require('connect-flash');
+app.use(flash());
+
+//handlebars Setup
+var exphbs = require("express-handlebars");
+// Set handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.set("view engine", "handlebars");
 
 //Passport Configuration
 // passport.use(new LocalStrategy(
@@ -29,9 +46,8 @@ var db = require("./models");
 //   }
 // ));
 
-//Server Setup
-var app = express();
-var PORT = 3000;
+//var initPassport = require('./passport/init');
+//initPassport(passport);
 
 // Serve static content for the app from the "public" directory in the application directory.
 // app.use('/', express.static(path.join(__dirname, 'public')));
@@ -58,7 +74,9 @@ var api = require("./routes/api-routes.js");
 app.use("/", routes);
 api.apiRoutes(app);
 
-//User Login
+
+// //User Login
+
 // app.post('/login',
 //   passport.authenticate('local', { successRedirect: '/',
 //                                    failureRedirect: '/login',
@@ -66,12 +84,13 @@ api.apiRoutes(app);
 // );
 
 //routes
-// htmlRoutes(app);
 
-
-//Sync sequelize models and Start Express App. Server Listening
-db.sequelize.sync( {force: true} ).then(function() {
-	app.listen(PORT, function(){
-	  console.log("Listening on PORT " + PORT);
-	});  
+htmlRoutes(app, passport);
+apiRoutes(app, passport);
+require('./config/passport.js')(passport, db.Users);
+//ServerListening
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });

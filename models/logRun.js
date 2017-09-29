@@ -12,7 +12,7 @@ var Runs = sequelize.define("Runs", {
             type: DataTypes.TIME,
             notEmpty: true
         },
-        run_notes: {
+        note: {
             type: DataTypes.STRING,
         }
       },
